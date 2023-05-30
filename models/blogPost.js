@@ -2,10 +2,10 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connections");
 
-// set up comments model
-class Comment extends Model {}
+// set up blogpost model params
+class BlogPost extends Model {}
 
-Comment.init(
+BlogPost.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -13,29 +13,35 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     body: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [3, 250],
-      },
     },
     userID: {
       type: DataTypes.INTEGER,
       references: {
         model: "user",
-        key: "id",
-      },
-    },
+        key: "id"
+      }
+    }
+    // future enhancement idea: take a limited portion of the blog to preview
+    // preview: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
   },
   {
     sequelize,
-    timestamps: false,
+    timestams: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "comment",
+    modelName: "blogPost",
   }
 );
 
 // export model
-module.exports = Comment;
+module.exports = BlogPost;
