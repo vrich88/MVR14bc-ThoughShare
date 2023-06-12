@@ -2,7 +2,6 @@
 const { Model, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/connections");
-const { update } = require("../../../p2/ontheshelf/models/User");
 
 // password input verification
 class User extends Model {
@@ -60,5 +59,5 @@ User.init(
   }
 );
 
-// export model
+// export user
 module.exports = User;
