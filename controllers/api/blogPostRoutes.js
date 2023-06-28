@@ -3,6 +3,20 @@ const router = require("express").Router();
 const { BlogPost } = require("../../models");
 const authorize = require("../../utils/authorize");
 
+// get blogPost by id
+router.get("/:id", async (req, res) => {
+  try {
+    const blogPostData = await BlogPost.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.json(blogPostData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // add new blogPost
 router.post("/", authorize, async (req, res) => {
   try {
@@ -39,15 +53,25 @@ router.delete("/:id", authorize, async (req, res) => {
 
 // update blogPost
 router.put("/:id", (req, res) => {
-    BlogPost.update({
+  try {
+    const updatedBlogPost = BlogPost.update(
+      {
         ...req.body,
-        userID: req.session.user_id
-    },
-    {
-        where: { id: req.params.id }
-    })
-    // .then (() => )
-})
+        userID: req.session.user_id,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    if (!updatedBlogPost) {
+      res.status(404).json(updatedBlogPost);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
-// export routes
+// export router for blogPosts
 module.exports = router;
