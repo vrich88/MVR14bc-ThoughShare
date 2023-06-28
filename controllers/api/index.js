@@ -4,7 +4,7 @@ const userRoutes = require("./userRoutes");
 const postRoutes = require("./blogPostRoutes");
 const commentRoutes = require("./commentRoutes");
 
-// use pathing
+// use pathing routes
 router.use("/user", userRoutes);
 router.use("/post", postRoutes);
 router.use("/comment", commentRoutes);

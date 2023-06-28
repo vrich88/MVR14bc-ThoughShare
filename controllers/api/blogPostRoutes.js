@@ -3,20 +3,6 @@ const router = require("express").Router();
 const { BlogPost } = require("../../models");
 const authorize = require("../../utils/authorize");
 
-// get blogPost by id
-router.get("/:id", async (req, res) => {
-  try {
-    const blogPostData = await BlogPost.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-    res.json(blogPostData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 // add new blogPost
 router.post("/", authorize, async (req, res) => {
   try {
@@ -28,6 +14,20 @@ router.post("/", authorize, async (req, res) => {
     // catch error if something wrong
   } catch (err) {
     res.status(400).json(err);
+  }
+});
+
+// get blogPost by id
+router.get("/:id", async (req, res) => {
+  try {
+    const blogPostData = await BlogPost.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.json(blogPostData);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
