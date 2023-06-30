@@ -4,7 +4,7 @@ const apiRoutes = require("./api/");
 const homeRoutes = require("./homeRoutes");
 const dashboardRoutes = require("./dashboardRoutes");
 
-// use pathing
+// use pathing routes
 router.use("/", homeRoutes);
 router.use("/dashboard", dashboardRoutes);
 router.use("/api", apiRoutes);
