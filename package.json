@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/vrich88/MVR14bc-ThoughtShare/issues"
   },
-  "homepage": "https://github.com/vrich88/MVR14bc-ThoughtShare#readme"
+  "homepage": "https://github.com/vrich88/MVR14bc-ThoughtShare#readme",
+  "dependencies": {
+    "bulma": "^0.9.4"
+  }
 }
