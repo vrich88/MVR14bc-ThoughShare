@@ -1,0 +1,22 @@
+{{! all blog posts view }}
+<div class="posts">
+  {{#each everyPost}}
+    <article class="card">
+      <section class="card-header flex-row justify-space-between">
+        <h2 class="card-header-title">
+          <a href="post/{{id}}">{{title}}</a>
+        </h2>
+        <div class="card-header-item">
+          Posted by{{user.username}}
+          on
+          {{format_date createdAt}}
+        </div>
+      </section>
+      <section class="card-content">
+        <div class="content">
+          {{body}}
+        </div>
+      </section>
+    </article>
+  {{/each}}
+</div>
