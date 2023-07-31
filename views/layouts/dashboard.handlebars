@@ -1,70 +1,71 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {{! bulma connection }}
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    />
-    {{! google font connection }}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap"
-      rel="stylesheet"
-    />
-    {{! stylesheet }}
-    <link rel="stylesheet" href="/css/style.css" />
-    <title>ThoughtShare-Dashboard</title>
-  </head>
-  <body>
-    <header>
-      {{! navigation bar }}
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a href="/" class="navbar-item">
-              Home
-            </a>
-            <a href="/dashboard/user-home" class="navbar-item">
-              Dashboard
-            </a>
-            <a class="button is-primary" href="">
-              Log In
-            </a>
-            <a class="button is-primary" href="">
-              Sign Up
-            </a>
-            <button id="logout" type="button" class="button is-primary">
-              Log Out
-            </button>
-          </div>
-        </div>
-      </nav>
-      <section>
-        {{! hero banner }}
-      </section>
-    </header>
-    <main>
-      {{! primary handlebar views }}
-      {{{body}}}
-    </main>
-    <section>
-      <div class="container">
-        <div class="columns is-centered">
-          <div class="column">
-            <a href="" class="button is-primary">
-              Write your blog post
-            </a>
-          </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <title>Thought Share</title>
+</head>
+
+<body>
+  {{!-- navbar from bulma --}}
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    {{!-- left/start side navbar --}}
+    <div id="navbarBasicExample" class="navbar-menu main-color">
+      <div class="navbar-start main-color">
+        <a href="/" class="navbar-item main-color">
+          Home
+        </a>
+        <a href="/dashboard/user-home" class="navbar-item main-color">
+          Dashboard
+        </a>
+      </div>
+    </div>
+    {{!-- right/end side navbar --}}
+    <div class="navbar-end main-color">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button invert-color" href="/login">
+            <strong>Log In</strong>
+          </a>
+          <a class="button invert-color" href="/signup">
+            <strong>Sign Up</strong>
+          </a>
+          <button id="logout" type="button" class="button invert-color">
+            <strong>Log Out</strong>
+          </button>
         </div>
       </div>
-    </section>
-    <footer>
-      {{! footer }}
-    </footer>
-  </body>
-  {{! call logout script }}
-  <script src="/js/logout.js"></script>
-</html>
+    </div>
+  </nav>
+  {{!-- main banner --}}
+  <section class="hero invert-color">
+    <div class="hero-body invert-color">
+      <h1 class="title ">
+        <a class="invert-color" href="/">Thought Share with Blog Posts</a>
+      </h1>
+    </div>
+  </section>
+  {{!-- area to display handlebar views when logged in --}}
+  <section class="section">
+    <div class="container">
+      {{{body}}}
+    </div>
+  </section>
+  {{!-- encouragement to write your own blog with button to write view --}}
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <a href="/dashboard/write-post" class="button main-color">
+          <Strong>Share Your Thoughts</Strong>
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+<script src="/js/logout.js"></script>

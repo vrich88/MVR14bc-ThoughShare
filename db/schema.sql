@@ -1,3 +1,3 @@
--- set up database and drop if exists
-DROP DATABASE IF EXISTS thotshare_db;
-CREATE DATABASE thotshare_db;
+-- drop database if exists and create it
+DROP DATABASE IF EXISTS blog_db;
+CREATE DATABASE blog_db;

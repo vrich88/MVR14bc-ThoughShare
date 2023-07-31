@@ -1,0 +1,24 @@
+{{!-- view for reader on home when not logged in --}}
+<div class="posts">
+  {{!-- check for all Posts and show --}}
+  {{#each allPosts}}
+    <article class="card">
+      <header class="card-header main-color flex-row justify-space-between">
+        <h2 class="main-color">
+          {{!-- blogpost title as link --}}
+          <a class="main-color" href="post/{{id}}">{{title}}</a>
+        </h2>
+        {{!-- blog post author --}}
+        <div class="card-header-item">
+          Thought Shared by {{User.username}}
+        </div>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          {{!-- blogpost body content --}}
+          {{body}}
+        </div>
+      </div>
+    </article>
+  {{/each}}
+</div>

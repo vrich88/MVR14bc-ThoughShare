@@ -1,10 +1,10 @@
-// required dependencies
+// import Sequelize components
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connections");
-
-// set up comments model
+// import sequelize configs
+const sequelize = require("../config/connection");
+// make Comment class extend Model
 class Comment extends Model {}
-
+// Comment model
 Comment.init(
   {
     id: {
@@ -16,9 +16,6 @@ Comment.init(
     body: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [3, 250],
-      },
     },
     userID: {
       type: DataTypes.INTEGER,
@@ -27,10 +24,10 @@ Comment.init(
         key: "id",
       },
     },
-    blogID: {
+    postID: {
       type: DataTypes.INTEGER,
       references: {
-        model: "blogPost",
+        model: "blogpost",
         key: "id",
       },
     },
@@ -42,6 +39,5 @@ Comment.init(
     modelName: "comment",
   }
 );
-
-// export comment
+// export Comment
 module.exports = Comment;

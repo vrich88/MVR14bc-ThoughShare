@@ -1,16 +1,16 @@
-// required dependencies
+// import Sequelize components
 const { Model, DataTypes } = require("sequelize");
+// import sequelize configs
+const sequelize = require("../config/connection");
+// import bcrypt
 const bcrypt = require("bcrypt");
-const sequelize = require("../config/connections");
-
-// password input verification
+// make User class extend Model
 class User extends Model {
   checkPassword(passwordInput) {
     return bcrypt.compareSync(passwordInput, this.password);
   }
 }
-
-// set up user model params and hooks
+// User model
 User.init(
   {
     id: {
@@ -23,32 +23,27 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true,
-      },
-    },
     password: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        is: [
-          "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&#$^-=+_])[A-Za-zd@$!%*?&]{8,}$",
-        ],
+        len: [8, 23],
       },
     },
   },
   {
+    // add bcrypt hash to password
     hooks: {
       beforeCreate: async (newUserData) => {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
-      beforeUpdate: async (updateUserData) => {
-        updateUserData.password = await bcrypt.hash(updateUserData, 10);
-        return updateUserData;
+      beforeUpdate: async (updatedUserData) => {
+        updatedUserData.password = await bcrypt.hash(
+          updatedUserData.password,
+          10
+        );
+        return updatedUserData;
       },
     },
     sequelize,
@@ -58,6 +53,5 @@ User.init(
     modelName: "user",
   }
 );
-
-// export user
+// export User model
 module.exports = User;
