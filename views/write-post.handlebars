@@ -1,26 +1,27 @@
-{{!-- write a new post view --}}
+{{!-- view for user to write a post --}}
 <div class="post card">
   <header class="card-header">
-    <h2 class="card-header-title">Create New Post</h2>
+    <h2 class="card-header-title">Share a New Thought</h2>
   </header>
   <form id="new-post-form" class="card-content">
+    {{!-- form input for title --}}
     <div class="field">
       <label class="label" for="post-title">Title</label>
       <div class="control">
         <input id="create-post-title" type="text" name="title" class="input" />
       </div>
     </div>
-
+    {{!-- form input for body --}}
     <div class="field">
-      <label class="label" for="post-body">Content</label>
+      <label class="label" for="post-body">Thought</label>
       <div class="control">
         <textarea id="create-post-body" name="body" class="textarea"></textarea>
       </div>
     </div>
-
+    {{!-- form submission --}}
     <div class="field">
       <div class="control">
-        <button type="submit" class="button is-primary">Create</button>
+        <button type="submit" class="button main-color">Share</button>
       </div>
     </div>
   </form>

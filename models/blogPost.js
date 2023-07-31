@@ -1,11 +1,11 @@
-// required dependencies
+// import Sequelize components
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connections");
-
-// set up blogPost model params
-class BlogPost extends Model {}
-
-BlogPost.init(
+// import sequelize configs
+const sequelize = require("../config/connection");
+// make Blogpost class extend Model
+class Blogpost extends Model { }
+// Blogpost model
+Blogpost.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,7 +15,7 @@ BlogPost.init(
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     body: {
       type: DataTypes.STRING,
@@ -28,19 +28,13 @@ BlogPost.init(
         key: "id",
       },
     },
-    // future enhancement idea: take a limited portion of the blog to preview
-    // preview: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // }
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "blogPost",
+    modelName: "blogpost",
   }
 );
-
-// export blogPost
-module.exports = BlogPost;
+// export Blogpost model
+module.exports = Blogpost;

@@ -1,0 +1,65 @@
+{{!-- single one post view --}}
+<div class="post">
+  <article class="card">
+    <header class="card-header flex-row justify-space-between">
+      {{!-- post title with username --}}
+      <h2>{{blogPost.title}}</h2>
+      <div>
+        Thought Shared by {{blogPost.user.username}}
+      </div>
+    </header>
+    {{!-- main content of thought shared for post body --}}
+    <div class="card-content">
+      <div class="content">
+        {{blogPost.body}}
+      </div>
+    </div>
+  </article>
+  {{!-- check for and show each comment attached to post --}}
+  {{#if blogPost.comments}}
+  <section class="card">
+    <header class="card-header">
+      <h3>Comments</h3>
+    </header>
+    <div class="card-content">
+      {{#each blogPost.comments}}
+      <div>
+        {{!-- comment body --}}
+        <p>
+          {{body}}
+        </p>
+        {{!-- comment by username --}}
+        <p>
+          {{User.username}}
+        </p>
+      </div>
+      {{/each}}
+    </div>
+  </section>
+  {{/if}}
+  {{!-- form to add new comment --}}
+  <form id="new-comment-form" class="card">
+    <header class="card-header">
+      <h3>Add New Comment</h3>
+    </header>
+    {{!-- form comment ID not seen --}}
+    <div class="card-content">
+      <input type="hidden" id="post-id" name="post-id" value="{{blogPost.id}}" />
+      {{!-- form input for comment body --}}
+      <div class="field">
+        <label class="label" for="comment-body">Comment</label>
+        <div class="control">
+          <input id="comment-body" name="comment-body" class="textarea"></input>
+        </div>
+      </div>
+      {{!-- form submission --}}
+      <div class="field">
+        <div class="control">
+          <button type="submit" class="button main-color">Submit</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script src="/js/comment.js"></script>

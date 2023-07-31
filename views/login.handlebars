@@ -1,30 +1,36 @@
-{{!-- login view --}}
+{{!-- view for login --}}
 <div class="card">
   <header class="card-header">
     <h2 class="card-header-title">Login</h2>
   </header>
+  {{!-- login form --}}
   <form id="login-form" class="card-content">
+    {{!-- form input for username --}}
     <div class="field">
       <label for="username-input-login" class="label">Username</label>
       <div class="control">
         <input type="text" id="username-input-login" class="input" />
       </div>
     </div>
+    {{!-- form input for password --}}
     <div class="field">
       <label for="password-input-login" class="label">Password</label>
       <div class="control">
         <input type="password" id="password-input-login" class="input" />
       </div>
     </div>
+    {{!-- form submission --}}
     <div class="field">
       <div class="control">
-        <button type="submit" id="login-btn" class="button is-primary">Login!</button>
+        <button type="submit" id="login-btn" class="button main-color">Login</button>
       </div>
     </div>
+    {{!-- alternative button to route to sign up --}}
     <div class="field">
       <div class="control">
-        <a type="button" href="/signup" class="button is-text">Sign up instead</a>
+        <a type="button" href="/signup" class="button is-text">Sign Up</a>
       </div>
+      <p>Then you can share your thoughts</p>
     </div>
   </form>
 </div>

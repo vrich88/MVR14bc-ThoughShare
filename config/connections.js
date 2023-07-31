@@ -1,9 +1,10 @@
-// required dependencies
+// import Sequelize
 const Sequelize = require("sequelize");
+// use .env file
 require("dotenv").config();
-// variable
+// make sequelize variable
 let sequelize;
-// run new sequelize
+// check if JAWSDB_URL exists & if yes create new Sequelize & else create new with local .env
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {

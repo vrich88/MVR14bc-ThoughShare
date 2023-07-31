@@ -1,7 +1,6 @@
-// function to confirm user is logged in
 const authorize = (req, res, next) => {
   if (!req.session.logged_in) {
-    res.redirect("/login");
+    res.status(400);
   } else {
     next();
   }

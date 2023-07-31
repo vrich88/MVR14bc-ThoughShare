@@ -1,62 +1,65 @@
-// required dependencies
+// importing express Router
 const router = require("express").Router();
+// importing model
 const { User } = require("../../models");
-
-// make new user begin session
-router.post("/", async (req, res) => {
+// route to signup new user from provided data & login & start session
+router.post("/signup", async (req, res) => {
   try {
     const userData = await User.create(req.body);
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
+      // if good, set 200 status & JSON user
       res.status(200).json(userData);
     });
-    // catch error to tell what was wrong
+    // if error, catch & set 400 status & JSON error
   } catch (err) {
     res.status(400).json(err);
   }
 });
-
-// log into ThoughtShare BlogPost
+// route to login & start session
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({
       where: { username: req.body.username },
     });
-    // check for existing
     if (!userData) {
-      res.status(400).json({ message: "Error...Account NOT found" });
+      res
+        // if NO user to login, set 400 status & JSON alert message
+        .status(400)
+        .json({ alert: `User not found` });
       return;
     }
-    // check for matching password
+    // if BAD password to login, set 400 status & JSON message
     const goodPassword = await userData.checkPassword(req.body.password);
     if (!goodPassword) {
-      res.status(400).json({ message: "Error...Account NOT found" });
+      res
+        .status(400)
+        .json({ message: `Password Incorrect` });
       return;
     }
-    // if good log in and begin session
+    // if good, login & JSON message
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      res.json({ user: userData, message: "Hello...Successful log in" });
+      res.json({ user: userData, message: "You're in" });
     });
-    // catch error to tell what was wrong
   } catch (err) {
+    // if error, catch & set 400 status & JSON error
     res.status(400).json(err);
   }
 });
-
-// log out of ThoughtShare BlogPost
+// route to logout and delete session
 router.post("/logout", (req, res) => {
-  // on log out destroy session data
   if (req.session.logged_in) {
     req.session.destroy(() => {
+      // if good, set 204 status & end
       res.status(204).end();
     });
-    // return an error if something wrong
   } else {
-    res.status(404).json({ message: "Goodbye...Successful log out" }).end();
+    // if NO logout, set 404 status & end
+    res.status(404).end();
   }
 });
-
+// export router
 module.exports = router;

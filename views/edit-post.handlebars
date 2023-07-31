@@ -1,29 +1,33 @@
-{{!-- blog post edit view --}}
+{{!-- view for updating/editing a blogPost --}}
 <div class="post card">
   <header class="card-header">
-    <h2 class="card-header-title">Edit Post</h2>
+    <h2 class="card-header-title">Edit Your Thought</h2>
   </header>
+  {{!-- edit form --}}
   <form id="edit-post-form" class="card-content">
+    {{!-- blogPost ID not seen --}}
     <input type="hidden" name="post-id" value="{{blogPost.id}}" />
-
+    {{!-- form input for title --}}
     <div class="field">
       <label class="label" for="post-title">Title</label>
       <div class="control">
         <input id="post-title" type="text" name="post-title" value="{{blogPost.title}}" class="input" />
       </div>
     </div>
-
+    {{!-- form input for body --}}
     <div class="field">
-      <label class="label" for="post-body">Content</label>
+      <label class="label" for="post-body">Thought</label>
       <div class="control">
         <textarea id="post-body" name="post-body" class="textarea" >{{blogPost.body}}</textarea>
       </div>
     </div>
-
+    {{!-- form submission --}}
     <div class="field is-grouped">
+      {{!-- form submit button --}}
       <div class="control">
-        <button type="submit" class="button is-primary">Update</button>
+        <button type="submit" class="button main-color">Update</button>
       </div>
+      {{!-- form delete button --}}
       <div class="control">
         <button type="button" id="delete-btn" class="button is-danger">Delete</button>
       </div>
