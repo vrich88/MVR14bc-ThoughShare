@@ -1,7 +1,7 @@
 // import models
-const User = require('./user');
-const Blogpost = require('./blogpost');
-const Comment = require('./comment');
+const User = require("./user");
+const Blogpost = require("./blogpost");
+const Comment = require("./comment");
 // model connections
 Blogpost.belongsTo(User, {
    foreignKey: 'userID',

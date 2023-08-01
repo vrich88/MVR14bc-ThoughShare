@@ -3,7 +3,7 @@ const { Model, DataTypes } = require("sequelize");
 // import sequelize configs
 const sequelize = require("../config/connection");
 // make Blogpost class extend Model
-class Blogpost extends Model { }
+class Blogpost extends Model {}
 // Blogpost model
 Blogpost.init(
   {

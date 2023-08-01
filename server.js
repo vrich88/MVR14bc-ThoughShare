@@ -3,8 +3,8 @@ const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const hbs = require("express-handlebars");
-const helpers = require(".utilities/helpers");
-const sequelize = require("./config/connections");
+const helpers = require("./utils/helpers");
+const sequelize = require("./config/connection");
 const sessionStorage = require("connect-session-sequelize")(session.Store);
 
 // set up app & port
@@ -33,8 +33,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(session(secretSession));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(require("./controllers/"));
-const views = hbs.create({ helpers });
-app.engine(json());
+const view = hbs.create({ helpers });
+app.engine("handlebars", view.engine);
 app.set("view engine", "handlebars");
 
 // app running console log confirmation/location

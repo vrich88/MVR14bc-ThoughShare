@@ -7,8 +7,8 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 // route to signup
-router.get('/signup', (req, res) => {
-  res.render('signup');
+router.get("/signup", (req, res) => {
+  res.render("signup");
 });
 // route to find all blogPosts including User
 router.get("/", async (req, res) => {

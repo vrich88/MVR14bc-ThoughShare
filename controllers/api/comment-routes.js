@@ -1,7 +1,7 @@
 // import express Router 
 const router = require("express").Router();
 // import Comment model
-const { Comment } = require("../../models/");
+const { Comment } = require("../../models");
 // import the authorize middleware
 const authorize = require("../../utils/authorize");
 // route to post comment

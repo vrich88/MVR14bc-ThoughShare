@@ -5,7 +5,7 @@ const { User, Blogpost, Comment } = require("../models");
 // import authorize middleware
 const authorize = require("../utils/authorize");
 
-// find user based on id, excluding password attribute from retrieved data, including blogpost
+// find user based on id, excluding password attribute from retrieved data, including Blogpost
 router.get("/user-home", authorize, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
@@ -30,7 +30,6 @@ router.get("/write-post", authorize, (req, res) => {
     layout: "dashboard",
   });
 });
-
 // find blogpost based on id and show it for editing
 router.get("/edit-post/:id", authorize, async (req, res) => {
   try {

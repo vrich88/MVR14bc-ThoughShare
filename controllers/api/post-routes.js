@@ -50,7 +50,7 @@ router.put("/:id", authorize, (req, res) => {
     if (!updated) {
       // if NO update, set 404 status & JSON failed message
       res.status(404).json({
-        message: `Update failed, try again`,
+        message: "Update failed, try again",
       });
       return;
     }
@@ -72,7 +72,7 @@ router.delete("/:id", authorize, async (req, res) => {
     if (!deletedPost) {
       // if NO delete, set 404 status & JSON failed message
       res.status(404).json({
-        message: `Post deletion failed, it's too strong`,
+        message: "Post deletion failed, it's too strong",
       });
       return;
     }

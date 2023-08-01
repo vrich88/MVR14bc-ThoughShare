@@ -27,15 +27,15 @@ router.post("/login", async (req, res) => {
       res
         // if NO user to login, set 400 status & JSON alert message
         .status(400)
-        .json({ alert: `User not found` });
+        .json({ alert: "User not found" });
       return;
     }
-    // if BAD password to login, set 400 status & JSON message
-    const goodPassword = await userData.checkPassword(req.body.password);
-    if (!goodPassword) {
+    // if wrong password to login, set 400 status & JSON message
+    const correctPassword = await userData.checkPassword(req.body.password);
+    if (!correctPassword) {
       res
         .status(400)
-        .json({ message: `Password Incorrect` });
+        .json({ message: "Password Incorrect" });
       return;
     }
     // if good, login & JSON message
