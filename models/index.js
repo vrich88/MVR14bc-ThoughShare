@@ -1,6 +1,6 @@
 // import models
 const User = require("./user");
-const Blogpost = require("./blogpost");
+const Blogpost = require("./blogpost__");
 const Comment = require("./comment");
 // model connections
 Blogpost.belongsTo(User, {
